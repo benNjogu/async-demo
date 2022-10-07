@@ -1,7 +1,7 @@
-const p = new Promise((resolve, reject) => {
+const p = new Promise((resolve) => {
   setTimeout(() => {
     console.log("Asynch operation 1...");
-    reject(new Error("because something failed..."));
+    resolve(1);
   }, 2000);
 });
 
@@ -12,7 +12,4 @@ const p2 = new Promise((resolve) => {
   }, 2000);
 });
 
-//If one promise is rejected, the final promise returned is considered rejected
-Promise.all([p, p2])
-  .then((result) => console.log(result))
-  .catch((err) => console.log("Error", err.message));
+Promise.race([p, p2]).then((result) => console.log(result));
