@@ -1,7 +1,7 @@
 const p = new Promise(function (resolve, reject) {
   setTimeout(() => {
-    //resolve(1);
-    reject(new Error("message"));
+    resolve(1); //Pending => resolved/fulfilled
+    reject(new Error("message")); //Pending => rejected
   }, 2000);
 });
 
