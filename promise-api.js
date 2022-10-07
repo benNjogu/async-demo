@@ -1,5 +1,15 @@
-const p = Promise.resolve({ id: 1 });
-p.then((result) => console.log(result));
+const p = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log("Asynch operation 1...");
+    resolve(1);
+  }, 2000);
+});
 
-const p2 = Promise.reject(new Error("Reason for rejection"));
-p.catch((err) => console.log(err));
+const p2 = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log("Asynch operation 2...");
+    resolve(2);
+  }, 2000);
+});
+
+Promise.all([p, p2]).then((result) => console.log(result));
